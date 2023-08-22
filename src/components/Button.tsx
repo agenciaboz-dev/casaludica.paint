@@ -11,7 +11,7 @@ interface CustomButtomProps extends ButtonProps {
 export const Button: React.FC<CustomButtomProps> = (props) => {
     return (
         <LinearGradient
-            style={{ borderRadius: 50, justifyContent: "center", alignItems: "center" }}
+            style={[{ borderRadius: 50, justifyContent: "center", alignItems: "center" }, props.style]}
             colors={colors.backgroundGradient}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}

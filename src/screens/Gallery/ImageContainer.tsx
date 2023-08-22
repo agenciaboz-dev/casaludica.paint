@@ -1,10 +1,17 @@
+import { NavigationProp } from "@react-navigation/native"
 import React from "react"
-import { View } from "react-native"
+import { TouchableOpacity, Image } from "react-native"
+import { routes } from "../../routes"
 
 interface ImageProps {
-    image: ImageMap
+    navigation: NavigationProp<any, any>
+    image: number
 }
 
-export const ImageContainer: React.FC<ImageProps> = ({ image }) => {
-    return <View style={{}}></View>
+export const ImageContainer: React.FC<ImageProps> = ({ navigation, image }) => {
+    return (
+        <TouchableOpacity style={{}} onPress={() => navigation.navigate(routes.draw.name, { image })}>
+            <Image source={image} style={{ width: 300, height: 500, resizeMode: "cover" }} />
+        </TouchableOpacity>
+    )
 }
