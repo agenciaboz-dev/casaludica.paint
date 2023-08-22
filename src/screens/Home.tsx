@@ -1,5 +1,5 @@
 import React from "react"
-import { Alert, Dimensions, TouchableHighlight, TouchableOpacity, View } from "react-native"
+import { Alert, BackHandler, Dimensions, Platform, TouchableHighlight, TouchableOpacity, View } from "react-native"
 import { Button } from "../components/Button"
 import { Text } from "react-native-paper"
 
@@ -14,9 +14,11 @@ export const Home: React.FC<HomeProps> = ({}) => {
                 <Button mode="contained" onPress={() => Alert.alert("oi")} textVariant="displayMedium">
                     Catalogo
                 </Button>
-                <Button mode="contained" onPress={() => Alert.alert("oi")} textVariant="labelLarge">
-                    Sair
-                </Button>
+                {Platform.OS != "ios" && (
+                    <Button mode="contained" onPress={() => BackHandler.exitApp()} textVariant="labelLarge">
+                        Sair
+                    </Button>
+                )}
             </View>
         </View>
     )
