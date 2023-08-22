@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet } from "react-native"
 import { PaperProvider } from "react-native-paper"
-import { Routes } from "./src/routes"
+import { Routes } from "./src/Router"
 import { theme } from "./src/style/theme"
 
 export default function App() {

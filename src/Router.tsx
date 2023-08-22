@@ -1,16 +1,10 @@
 import React from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { NativeStackNavigationOptions, createNativeStackNavigator } from "@react-navigation/native-stack"
-import { Home } from "./screens/Home"
 import { colors } from "./style/colors"
-import { Gallery } from "./screens/Gallery"
+import { routes } from "./routes"
 
 interface RoutesProps {}
-
-export const routes = {
-    home: { name: "home", component: Home },
-    gallery: { name: "gallery", component: Gallery },
-}
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
     const Stack = createNativeStackNavigator()
@@ -26,6 +20,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
         animation: "slide_from_right",
         headerShown: false,
     }
+
     const home_header_options = {
         title: "Casa Lúdica alguma coisa",
         headerShown: false,
