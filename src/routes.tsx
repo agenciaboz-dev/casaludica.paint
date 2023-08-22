@@ -7,10 +7,10 @@ import { Gallery } from "./screens/Gallery"
 
 interface RoutesProps {}
 
-export const routes: Route[] = [
-    { name: "home", component: Home },
-    { name: "gallery", component: Gallery },
-]
+export const routes = {
+    home: { name: "home", component: Home },
+    gallery: { name: "gallery", component: Gallery },
+}
 
 export const Routes: React.FC<RoutesProps> = ({}) => {
     const Stack = createNativeStackNavigator()
@@ -34,7 +34,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="home" screenOptions={navigator_options}>
-                {routes.map((screen) => (
+                {Object.entries(routes).map(([_, screen]) => (
                     <Stack.Screen key={screen.name} name={screen.name} component={screen.component} />
                 ))}
             </Stack.Navigator>
