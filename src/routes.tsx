@@ -18,6 +18,7 @@ export const Routes: React.FC<RoutesProps> = ({}) => {
         },
         headerTitleAlign: "center",
         animation: "slide_from_right",
+        headerShown: false,
     }
     const home_header_options = {
         title: "Casa Lúdica alguma coisa",
