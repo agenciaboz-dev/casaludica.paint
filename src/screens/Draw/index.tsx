@@ -4,6 +4,7 @@ import { Dimensions, Image, View } from "react-native"
 import { Button } from "../../components/Button"
 import { routes } from "../../routes"
 import { Text } from "react-native-paper"
+import { CanvasContainer } from "./CanvasContainer"
 
 interface DrawProps {
     navigation: NavigationProp<any, any>
@@ -28,7 +29,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     Compartilhar
                 </Button>
             </View>
-            <Image source={baseImage} style={{ width: 350, flex: 1 }} />
+            <CanvasContainer navigation={navigation} image={baseImage} />
             <View style={{ flex: 0.3, backgroundColor: "blue" }}>
                 <Text>oi</Text>
             </View>
