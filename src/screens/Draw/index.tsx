@@ -4,6 +4,7 @@ import { Dimensions, Image, View } from "react-native"
 import { Button } from "../../components/Button"
 import { routes } from "../../routes"
 import { Text } from "react-native-paper"
+import { CanvasContainer } from "./CanvasContainer"
 
 interface DrawProps {
     navigation: NavigationProp<any, any>
@@ -17,18 +18,24 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
 
     return (
         <View style={{ padding: 20, alignItems: "center", height: 100 * vh, gap: 10 }}>
-            <View style={{ flexDirection: "row", gap: 10, alignSelf: "flex-start", height: 5 * vh, width: 100 * vw }}>
-                <Button onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.2 }}>
+            <View style={{ flexDirection: "row", alignSelf: "flex-start", height: 5 * vh, width: 95 * vw, gap: 5 }}>
+                <Button onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.2 }} mode="contained">
                     Voltar
                 </Button>
-                <Button icon={"home"} textColor="white" onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.1 }}>
+                <Button
+                    icon={"home"}
+                    textColor="white"
+                    onPress={() => navigation.navigate(routes.gallery.name)}
+                    style={{ flex: 0.1 }}
+                    mode="contained"
+                >
                     .
                 </Button>
-                <Button onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.6 }}>
+                <Button onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.6 }} mode="contained">
                     Compartilhar
                 </Button>
             </View>
-            <Image source={baseImage} style={{ width: 350, flex: 1 }} />
+            <CanvasContainer navigation={navigation} image={baseImage} />
             <View style={{ flex: 0.3, backgroundColor: "blue" }}>
                 <Text>oi</Text>
             </View>
