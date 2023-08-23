@@ -1,15 +1,19 @@
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet } from "react-native"
+import { StyleSheet, ImageBackground } from "react-native"
 import { PaperProvider } from "react-native-paper"
 import { Routes } from "./src/Router"
 import { theme } from "./src/style/theme"
+import { colors } from "./src/style/colors"
+import images from "./assets/background/background-planes.png"
 
 export default function App() {
     return (
-        <PaperProvider theme={theme}>
-            <StatusBar style="auto" />
-            <Routes />
-        </PaperProvider>
+        <ImageBackground source={images.background.planes} style={{ flex: 1, backgroundColor: colors.bgLightBlue }}>
+            <PaperProvider theme={theme}>
+                <StatusBar style="auto" />
+                <Routes />
+            </PaperProvider>
+        </ImageBackground>
     )
 }
 
