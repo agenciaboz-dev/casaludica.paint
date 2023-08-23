@@ -5,6 +5,8 @@ import { Button } from "../../components/Button"
 import { routes } from "../../routes"
 import { Text } from "react-native-paper"
 import { CanvasContainer } from "./CanvasContainer"
+import { drawingColors } from "./drawingColors"
+import { Circle, Svg } from "react-native-svg"
 
 interface DrawProps {
     navigation: NavigationProp<any, any>
@@ -17,6 +19,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
     const baseImage = route.params?.image
 
     const [shouldUndo, setShouldUndo] = useState(false)
+    const [updateColor, setUpdateColor] = useState(drawingColors[0])
 
     return (
         <View style={{ padding: 20, alignItems: "center", height: 100 * vh, gap: 10 }}>
@@ -31,9 +34,29 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     Compartilhar
                 </Button>
             </View>
-            <CanvasContainer navigation={navigation} image={baseImage} shouldUndo={shouldUndo} setShouldUndo={setShouldUndo} />
-            <View style={{ flex: 0.3, backgroundColor: "blue" }}>
-                <Text>oi</Text>
+            <CanvasContainer navigation={navigation} image={baseImage} shouldUndo={shouldUndo} setShouldUndo={setShouldUndo} updateColor={updateColor} />
+            <View style={{ backgroundColor: "blue", width: 100 * vw, flex: 1, padding: 10 }}>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: "space-between", alignItems: "center" }}>
+                    <Text>oi</Text>
+                    <Text>tchau</Text>
+                </View>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        backgroundColor: "yellow",
+                        flex: 4,
+                        flexWrap: "wrap",
+                        gap: 5,
+                        justifyContent: "center",
+                        padding: 5,
+                    }}
+                >
+                    {drawingColors.map((color) => (
+                        <Svg width={30} height={30} onPress={() => setUpdateColor(color)}>
+                            <Circle fill={color} cx={15} cy={15} r={15} />
+                        </Svg>
+                    ))}
+                </View>
             </View>
         </View>
     )
