@@ -29,7 +29,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                 renderItem={({ item }: ImageItem) => <ImageContainer navigation={navigation} image={item} />}
                 // numColumns={2}
             />
-            <Button textVariant="displayMedium" onPress={() => navigation.navigate(routes.home.name)}>
+            <Button textVariant="displayMedium" mode="contained" onPress={() => navigation.navigate(routes.home.name)}>
                 Voltar
             </Button>
         </View>
