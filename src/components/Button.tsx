@@ -10,18 +10,10 @@ interface CustomButtomProps extends ButtonProps {
 
 export const Button: React.FC<CustomButtomProps> = (props) => {
     return (
-        <LinearGradient
-            style={[{ borderRadius: 50, justifyContent: "center", alignItems: "center" }, props.style]}
-            colors={colors.backgroundGradient}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            locations={[0.5, 1]}
-        >
-            <PaperButton {...props} style={{}} buttonColor="transparent">
-                <Text style={{ color: "white" }} variant={props.textVariant}>
-                    {props.children}
-                </Text>
-            </PaperButton>
-        </LinearGradient>
+        <PaperButton {...props} style={{ borderRadius: 50, paddingLeft: 10, paddingRight: 10 }} buttonColor="#FF7C0A">
+            <Text style={{ color: "white", fontWeight: "800" }} variant={props.textVariant}>
+                {props.children}
+            </Text>
+        </PaperButton>
     )
 }

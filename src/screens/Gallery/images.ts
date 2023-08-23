@@ -8,6 +8,8 @@ const images = {
         mario: require("../../../assets/gallery/mario.jpeg"),
         minions: require("../../../assets/gallery/minions.png"),
     },
+    logo: require("../../../assets/logo.png"),
+    //background: require("../../../assets/background/background-planes.png"),
 }
 
 export default images
