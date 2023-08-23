@@ -1,5 +1,5 @@
 import React from "react"
-import { BackHandler, Dimensions, Platform, View, Image } from "react-native"
+import { BackHandler, Dimensions, Platform, View, Image, ImageBackground } from "react-native"
 import { Button } from "../components/Button"
 import { NavigationProp } from "@react-navigation/native"
 import { routes } from "../routes"
@@ -13,24 +13,35 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
     const maxHeight = Dimensions.get("window").height
 
     return (
-        <View style={{ padding: 20, height: maxHeight, backgroundColor: "red" }}>
-            <View style={{ backgroundColor: "transparent" }}>
-                <Image source={images.logo} style={{ width: 200, height: 150 }} />
-            </View>
-            <View style={{ marginTop: "auto", gap: 15, alignItems: "center", backgroundColor: "green" }}>
-                <Button
-                    mode="contained"
-                    onPress={() => navigation.navigate(routes.gallery.name)}
-                    textVariant="displayMedium"
+        <ImageBackground source={images.background.dots}>
+            <View style={{ height: maxHeight }}>
+                <View style={{ padding: 20, paddingTop: 70 }}>
+                    <View style={{ alignItems: "center", gap: 55 }}>
+                        <Image source={images.logo} style={{ width: 240, height: 160 }} />
+                        <Image source={images.theme} style={{ width: 390, height: 250 }} />
+                    </View>
+                </View>
+
+                <ImageBackground
+                    source={images.background.planes}
+                    style={{ height: 500, width: 420, position: "absolute", top: 440 }}
                 >
-                    Catalogo
-                </Button>
-                {Platform.OS != "ios" && (
-                    <Button mode="contained" onPress={() => BackHandler.exitApp()} textVariant="headlineSmall">
-                        Sair
-                    </Button>
-                )}
+                    <View style={{ gap: 15, alignItems: "center", position: "relative", top: 203 }}>
+                        <Button
+                            mode="contained"
+                            onPress={() => navigation.navigate(routes.gallery.name)}
+                            textVariant="displayMedium"
+                        >
+                            Catalogo
+                        </Button>
+                        {Platform.OS != "ios" && (
+                            <Button mode="contained" onPress={() => BackHandler.exitApp()} textVariant="headlineSmall">
+                                Sair
+                            </Button>
+                        )}
+                    </View>
+                </ImageBackground>
             </View>
-        </View>
+        </ImageBackground>
     )
 }
