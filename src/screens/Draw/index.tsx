@@ -52,7 +52,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                         onValueChange={(value) => setStroke(value[0])}
                         maximumValue={100}
                         minimumValue={1}
-                        containerStyle={{ backgroundColor: "red", flex: 1 }}
+                        containerStyle={{ backgroundColor: "orange", flex: 1 }}
                         thumbStyle={{ backgroundColor: "purple" }}
                         trackStyle={{ backgroundColor: "red" }}
                     />
