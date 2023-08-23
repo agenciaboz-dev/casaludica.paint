@@ -11,7 +11,7 @@ interface ImageProps {
 export const ImageContainer: React.FC<ImageProps> = ({ navigation, image }) => {
     return (
         <TouchableOpacity style={{}} onPress={() => navigation.navigate(routes.draw.name, { image })}>
-            <Image source={image} style={{ width: 300, height: 500, resizeMode: "cover", backgroundColor: "white" }} />
+            <Image source={image} style={{ width: 300, height: 500, resizeMode: "contain", backgroundColor: "white" }} />
         </TouchableOpacity>
     )
 }

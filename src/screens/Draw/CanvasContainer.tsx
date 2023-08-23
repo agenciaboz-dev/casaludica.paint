@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { NavigationProp } from "@react-navigation/native"
-import { ColorValue, Dimensions, GestureResponderEvent, ImageBackground, View } from "react-native"
+import { ColorValue, Dimensions, GestureResponderEvent, Image, View } from "react-native"
 import { Path, Svg } from "react-native-svg"
 
 interface CanvasContainerProps {
@@ -14,6 +14,8 @@ interface CanvasContainerProps {
 
 export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, image, shouldUndo, setShouldUndo, updateColor, stroke }) => {
     const { height, width } = Dimensions.get("window")
+    const imageHeight = height * 0.7
+    const imageWidth = width * 0.9
 
     const [currentPath, setCurrentPath] = useState<string[]>([])
     const [paths, setPaths] = useState<{ path: string[]; color: ColorValue; stroke: number }[]>([])
@@ -59,8 +61,8 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
     }, [updateColor])
 
     return (
-        <ImageBackground source={image}>
-            <Svg height={height * 0.7} width={width * 0.9} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+        <View style={{ position: "relative" }}>
+            <Svg height={imageHeight} width={imageWidth} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
                 <Path
                     d={currentPath.join("")}
                     stroke={updateColor}
@@ -68,7 +70,7 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
                     strokeWidth={stroke}
                     strokeLinejoin={"round"}
                     strokeLinecap={"round"}
-                    strokeOpacity={0.5}
+                    strokeOpacity={1}
                 />
 
                 {paths.length > 0 &&
@@ -84,6 +86,9 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
                         />
                     ))}
             </Svg>
-        </ImageBackground>
+            <View style={{ position: "absolute", height: imageHeight, width: imageWidth, top: 0, left: 0 }} pointerEvents="none">
+                <Image source={image} style={{ height: imageHeight, width: imageWidth, resizeMode: "contain" }} />
+            </View>
+        </View>
     )
 }
