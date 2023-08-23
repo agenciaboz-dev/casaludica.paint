@@ -11,7 +11,8 @@ const images = {
     logo: require("../../../assets/logo.png"),
     theme: require("../../../assets/colorindo.png"),
     background: {
-        planes: require("../../../assets/background/clouds.png"),
+        clouds: require("../../../assets/background/clouds.png"),
+        planes: require("../../../assets/background/background-planes.png"),
         dots: require("../../../assets/background/background-dots.jpeg"),
     },
 }

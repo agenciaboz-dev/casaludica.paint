@@ -23,7 +23,7 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                 </View>
 
                 <ImageBackground
-                    source={images.background.planes}
+                    source={images.background.clouds}
                     style={{ height: 500, width: 420, position: "absolute", top: 440 }}
                 >
                     <View style={{ gap: 15, alignItems: "center", position: "relative", top: 203 }}>

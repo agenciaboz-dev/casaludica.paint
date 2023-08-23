@@ -3,17 +3,27 @@ import { StyleSheet, ImageBackground } from "react-native"
 import { PaperProvider } from "react-native-paper"
 import { Routes } from "./src/Router"
 import { theme } from "./src/style/theme"
-import { colors } from "./src/style/colors"
-import images from "./src/screens/Gallery/images"
+import { useFonts } from 'expo-font';
 
 export default function App() {
+
+    let [loaded] = useFonts({
+        'KGSecondChancesSolid': require('./assets/fonts/KGSecondChancesSolid.ttf'),
+        'KGSecondChancesSketch': require('./assets/fonts/KGSecondChancesSketch.ttf'),
+    });
+
+    if (!loaded) {
+        return <>
+
+        </>
+    }
+
+
     return (
-        <ImageBackground source={images.background.planes} style={{ flex: 1, backgroundColor: colors.bgLightBlue }}>
-            <PaperProvider theme={theme}>
-                <StatusBar style="auto" />
-                <Routes />
-            </PaperProvider>
-        </ImageBackground>
+        <PaperProvider theme={theme}>
+            <StatusBar style="auto" />
+            <Routes />
+        </PaperProvider>
     )
 }
 
