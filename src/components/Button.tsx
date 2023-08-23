@@ -1,4 +1,3 @@
-import { LinearGradient } from "expo-linear-gradient"
 import React from "react"
 import { Button as PaperButton, ButtonProps, Text } from "react-native-paper"
 import { colors } from "../style/colors"
