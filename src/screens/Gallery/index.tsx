@@ -13,7 +13,7 @@ interface GalleryProps {
 
 export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
     const maxHeight = Dimensions.get("window").height
-    const imageData: number[] = Object.values(images)
+    const imageData: number[] = Object.values(images.gallery)
 
     return (
         <View style={{ height: maxHeight, padding: 20, alignItems: "center", justifyContent: "space-between" }}>
