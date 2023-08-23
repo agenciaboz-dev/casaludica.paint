@@ -7,6 +7,7 @@ import { Text } from "react-native-paper"
 import { CanvasContainer } from "./CanvasContainer"
 import { drawingColors } from "./drawingColors"
 import { Circle, Svg } from "react-native-svg"
+import { Slider } from "@miblanchard/react-native-slider"
 
 interface DrawProps {
     navigation: NavigationProp<any, any>
@@ -20,6 +21,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
 
     const [shouldUndo, setShouldUndo] = useState(false)
     const [updateColor, setUpdateColor] = useState(drawingColors[0])
+    const [stroke, setStroke] = useState(2)
 
     return (
         <View style={{ padding: 20, alignItems: "center", height: 100 * vh, gap: 10 }}>
@@ -34,11 +36,26 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     Compartilhar
                 </Button>
             </View>
-            <CanvasContainer navigation={navigation} image={baseImage} shouldUndo={shouldUndo} setShouldUndo={setShouldUndo} updateColor={updateColor} />
+            <CanvasContainer
+                navigation={navigation}
+                image={baseImage}
+                shouldUndo={shouldUndo}
+                setShouldUndo={setShouldUndo}
+                updateColor={updateColor}
+                stroke={stroke}
+            />
             <View style={{ backgroundColor: "blue", width: 100 * vw, flex: 1, padding: 10 }}>
-                <View style={{ flexDirection: "row", flex: 1, justifyContent: "space-between", alignItems: "center" }}>
-                    <Text>oi</Text>
-                    <Text>tchau</Text>
+                <View style={{ flexDirection: "row", flex: 1, alignItems: "center", gap: 10 }}>
+                    <Text>{stroke.toFixed(0)}</Text>
+                    <Slider
+                        value={stroke}
+                        onValueChange={(value) => setStroke(value[0])}
+                        maximumValue={80}
+                        minimumValue={1}
+                        containerStyle={{ backgroundColor: "red", flex: 1 }}
+                        thumbStyle={{ backgroundColor: "purple" }}
+                        trackStyle={{ backgroundColor: "red" }}
+                    />
                 </View>
                 <View
                     style={{

@@ -9,13 +9,14 @@ interface CanvasContainerProps {
     shouldUndo: boolean
     setShouldUndo: (value: boolean) => void
     updateColor: ColorValue
+    stroke: number
 }
 
-export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, image, shouldUndo, setShouldUndo, updateColor }) => {
+export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, image, shouldUndo, setShouldUndo, updateColor, stroke }) => {
     const { height, width } = Dimensions.get("window")
 
     const [currentPath, setCurrentPath] = useState<string[]>([])
-    const [paths, setPaths] = useState<{ path: string[]; color: ColorValue }[]>([])
+    const [paths, setPaths] = useState<{ path: string[]; color: ColorValue; stroke: number }[]>([])
 
     const onTouchMove = (event: GestureResponderEvent) => {
         const newPath = [...currentPath]
@@ -34,7 +35,7 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
 
     const onTouchEnd = (event: GestureResponderEvent) => {
         const currentPaths = [...paths]
-        const newPath = { path: currentPath, color: updateColor }
+        const newPath = { path: currentPath, color: updateColor, stroke }
 
         //push new path with old path and clean current path state
         currentPaths.push(newPath)
@@ -64,7 +65,7 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
                     d={currentPath.join("")}
                     stroke={updateColor}
                     fill={"transparent"}
-                    strokeWidth={2}
+                    strokeWidth={stroke}
                     strokeLinejoin={"round"}
                     strokeLinecap={"round"}
                     strokeOpacity={0.5}
@@ -77,7 +78,7 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
                             d={item.path.join("")}
                             stroke={item.color}
                             fill={"transparent"}
-                            strokeWidth={2}
+                            strokeWidth={item.stroke}
                             strokeLinejoin={"round"}
                             strokeLinecap={"round"}
                         />
