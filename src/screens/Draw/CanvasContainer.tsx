@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react"
 import { NavigationProp } from "@react-navigation/native"
-import { Dimensions, GestureResponderEvent, ImageBackground, View } from "react-native"
+import { ColorValue, Dimensions, GestureResponderEvent, ImageBackground, View } from "react-native"
 import { Path, Svg } from "react-native-svg"
 
 interface CanvasContainerProps {
     navigation: NavigationProp<any, any>
     image: number
     shouldUndo: boolean
-    setShouldUndo: (value:boolean) => void
+    setShouldUndo: (value: boolean) => void
+    updateColor: ColorValue
 }
 
-export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, image, shouldUndo, setShouldUndo }) => {
+export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, image, shouldUndo, setShouldUndo, updateColor }) => {
     const { height, width } = Dimensions.get("window")
 
     const [currentPath, setCurrentPath] = useState<string[]>([])
-    const [paths, setPaths] = useState<string[][]>([])
+    const [paths, setPaths] = useState<{ path: string[]; color: ColorValue }[]>([])
 
     const onTouchMove = (event: GestureResponderEvent) => {
         const newPath = [...currentPath]
@@ -33,7 +34,7 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
 
     const onTouchEnd = (event: GestureResponderEvent) => {
         const currentPaths = [...paths]
-        const newPath = currentPath
+        const newPath = { path: currentPath, color: updateColor }
 
         //push new path with old path and clean current path state
         currentPaths.push(newPath)
@@ -52,12 +53,16 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
         }
     }, [shouldUndo])
 
+    useEffect(() => {
+        console.log(updateColor)
+    }, [updateColor])
+
     return (
         <ImageBackground source={image}>
             <Svg height={height * 0.7} width={width * 0.9} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
                 <Path
                     d={currentPath.join("")}
-                    stroke={"red"}
+                    stroke={updateColor}
                     fill={"transparent"}
                     strokeWidth={2}
                     strokeLinejoin={"round"}
@@ -69,8 +74,8 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
                     paths.map((item, index) => (
                         <Path
                             key={`path-${index}`}
-                            d={item.join("")}
-                            stroke={"red"}
+                            d={item.path.join("")}
+                            stroke={item.color}
                             fill={"transparent"}
                             strokeWidth={2}
                             strokeLinejoin={"round"}
