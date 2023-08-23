@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { NavigationProp } from "@react-navigation/native"
 import { Dimensions, GestureResponderEvent, ImageBackground, View } from "react-native"
 import { Path, Svg } from "react-native-svg"
@@ -6,9 +6,11 @@ import { Path, Svg } from "react-native-svg"
 interface CanvasContainerProps {
     navigation: NavigationProp<any, any>
     image: number
+    shouldUndo: boolean
+    setShouldUndo: (value:boolean) => void
 }
 
-export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, image }) => {
+export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, image, shouldUndo, setShouldUndo }) => {
     const { height, width } = Dimensions.get("window")
 
     const [currentPath, setCurrentPath] = useState<string[]>([])
@@ -38,6 +40,17 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
         setPaths(currentPaths)
         setCurrentPath([])
     }
+
+    const undo = () => {
+        setPaths((paths) => paths.slice(0, -1))
+    }
+
+    useEffect(() => {
+        if (shouldUndo) {
+            undo()
+            setShouldUndo(false)
+        }
+    }, [shouldUndo])
 
     return (
         <ImageBackground source={image}>
