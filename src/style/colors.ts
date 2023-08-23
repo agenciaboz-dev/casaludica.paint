@@ -1,5 +1,4 @@
 export const colors = {
-    primary: "#F1833E",
+    primary: "#FF7C0A",
     secondary: "#3A3D80",
-    backgroundGradient: ["#F1833E", "#F8C641"],
 }
