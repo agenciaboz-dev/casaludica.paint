@@ -17,7 +17,9 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
     const imageData: number[] = Object.values(images.gallery)
 
     return (
-        <View style={{ height: maxHeight, padding: 20, alignItems: "center", justifyContent: "space-between", backgroundColor: colors.background.blue }}>
+        <View
+            style={{ height: maxHeight, padding: 20, alignItems: "center", justifyContent: "space-between", backgroundColor: colors.background.blue }}
+        >
             <ImageBackground source={images.background.planes} style={{ flex: 1 }}>
                 <Text variant="displayLarge" style={{ textAlign: "center", color: "white" }}>
                     Escolha um desenho
@@ -29,7 +31,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                     contentContainerStyle={{ gap: 20 }}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }: ImageItem) => <ImageContainer navigation={navigation} image={item} />}
-                // numColumns={2}
+                    // numColumns={2}
                 />
                 <Button textVariant="displayMedium" mode="contained" onPress={() => navigation.navigate(routes.home.name)}>
                     Voltar
