@@ -69,7 +69,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     }}
                 >
                     {drawingColors.map((color) => (
-                        <Svg width={30} height={30} onPress={() => setUpdateColor(color)}>
+                        <Svg key={color} width={30} height={30} onPress={() => setUpdateColor(color)}>
                             <Circle fill={color} cx={15} cy={15} r={15} />
                         </Svg>
                     ))}
