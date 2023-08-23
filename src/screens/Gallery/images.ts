@@ -8,8 +8,10 @@ const images = {
         mario: require("../../../assets/gallery/mario.jpeg"),
         minions: require("../../../assets/gallery/minions.png"),
     },
-    logo: require("../../../assets/logo.png"),
-    theme: require("../../../assets/colorindo.png"),
+
+    logo: require("../../../assets/logo/logo.png"),
+    theme: require("../../../assets/logo/colorindo.png"),
+
     background: {
         clouds: require("../../../assets/background/clouds.png"),
         planes: require("../../../assets/background/background-planes.png"),
