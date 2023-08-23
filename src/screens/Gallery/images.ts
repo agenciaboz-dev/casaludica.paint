@@ -9,10 +9,7 @@ const images = {
         minions: require("../../../assets/gallery/minions.png"),
     },
     logo: require("../../../assets/logo.png"),
-    background: {
-        cloud: require("../../../assets/background/nuvens.png"),
-    },
-    theme: require("../../../assets/colorindo.png"),
+    //background: require("../../../assets/background/background-planes.png"),
 }
 
 export default images
