@@ -29,9 +29,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 <Button onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.2 }} mode="contained">
                     Voltar
                 </Button>
-                <Button icon={"home"} textColor="white" onPress={() => setShouldUndo(true)} style={{ flex: 0.1 }} mode="contained">
-                    .
-                </Button>
+                <Button icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{ flex: 0.1 }} mode="contained"></Button>
                 <Button onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.6 }} mode="contained">
                     Compartilhar
                 </Button>
