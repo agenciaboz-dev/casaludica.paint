@@ -4,7 +4,7 @@ import { PaperProvider } from "react-native-paper"
 import { Routes } from "./src/Router"
 import { theme } from "./src/style/theme"
 import { colors } from "./src/style/colors"
-import images from "./assets/background/background-planes.png"
+import images from "./src/screens/Gallery/images"
 
 export default function App() {
     return (
