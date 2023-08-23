@@ -70,7 +70,7 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
                     strokeWidth={stroke}
                     strokeLinejoin={"round"}
                     strokeLinecap={"round"}
-                    strokeOpacity={1}
+                    strokeOpacity={0.5}
                 />
 
                 {paths.length > 0 &&
@@ -83,6 +83,7 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
                             strokeWidth={item.stroke}
                             strokeLinejoin={"round"}
                             strokeLinecap={"round"}
+                            strokeOpacity={0.5}
                         />
                     ))}
             </Svg>
