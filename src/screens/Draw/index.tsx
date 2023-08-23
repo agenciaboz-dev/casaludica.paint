@@ -50,7 +50,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     <Slider
                         value={stroke}
                         onValueChange={(value) => setStroke(value[0])}
-                        maximumValue={80}
+                        maximumValue={100}
                         minimumValue={1}
                         containerStyle={{ backgroundColor: "red", flex: 1 }}
                         thumbStyle={{ backgroundColor: "purple" }}
