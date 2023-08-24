@@ -43,13 +43,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     Voltar
                 </PaperButton>
-                <PaperButton
-                    icon={"undo"}
-                    textColor="white"
-                    onPress={() => setShouldUndo(true)}
-                    style={{}}
-                    mode="contained"
-                ></PaperButton>
+                <PaperButton icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{}} mode="contained"></PaperButton>
                 <PaperButton
                     onPress={() => navigation.navigate(routes.gallery.name)}
                     style={{ flex: 0.5, paddingHorizontal: 0 }}
@@ -80,24 +74,19 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 }}
             >
                 <View style={{ flexDirection: "row", flex: 1, alignItems: "center", gap: 10 }}>
-                    <Text style={{ color: "white", flex: 0.1 }}>{stroke.toFixed(0)}</Text>
+                    <Text style={{ color: "white", flex: 0.15, textAlign: "center" }}>{stroke.toFixed(0)}</Text>
 
                     <Slider
                         value={stroke}
                         onValueChange={(value) => setStroke(value[0])}
                         maximumValue={100}
                         minimumValue={1}
-                        containerStyle={{ backgroundColor: "transparent", flex: 0.6 }}
+                        containerStyle={{ backgroundColor: "transparent", flex: 1 }}
                         thumbStyle={{ backgroundColor: "#FF7C0A" }}
                         trackStyle={{ backgroundColor: "#6022FC" }}
                         minimumTrackTintColor="white"
                     />
-                    <PaperButton
-                        onPress={() => {}}
-                        style={{ flex: 0.3 }}
-                        textStyle={{ padding: 0, fontSize: 3 * vw }}
-                        mode="contained"
-                    >
+                    <PaperButton onPress={() => {}} style={{ width: 80 }} textStyle={{ padding: 0, fontSize: 3 * vw }} mode="contained">
                         Borracha
                     </PaperButton>
                 </View>
@@ -115,14 +104,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     {drawingColors.map((color) => (
                         <Svg key={color} width={30} height={30} onPress={() => setUpdateColor(color)}>
-                            <Circle
-                                fill={color}
-                                cx={15}
-                                cy={15}
-                                r={14}
-                                stroke={"black"}
-                                strokeWidth={updateColor == color ? 2 : 0}
-                            />
+                            <Circle fill={color} cx={15} cy={15} r={3.5 * vw} stroke={"black"} strokeWidth={updateColor == color ? 2 : 0} />
                         </Svg>
                     ))}
 
