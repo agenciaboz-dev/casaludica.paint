@@ -1,6 +1,6 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native"
-import React, { useState } from "react"
-import { Dimensions, Image, View } from "react-native"
+import React, { useRef, useState } from "react"
+import { Alert, Dimensions, Image, Share, View } from "react-native"
 import { Button as PaperButton } from "../../components/Button"
 import { routes } from "../../routes"
 import { Button, Text } from "react-native-paper"
@@ -9,6 +9,9 @@ import { drawingColors } from "./drawingColors"
 import { Circle, Svg } from "react-native-svg"
 import { Slider } from "@miblanchard/react-native-slider"
 import { colors } from "../../style/colors"
+import ViewShot, { captureRef } from "react-native-view-shot"
+import * as MediaLibrary from "expo-media-library"
+import * as Sharing from "expo-sharing"
 
 interface DrawProps {
     navigation: NavigationProp<any, any>
@@ -19,10 +22,23 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
     const vh = Dimensions.get("screen").height / 100
     const vw = Dimensions.get("screen").width / 100
     const baseImage = route.params?.image
+    const shotRef = useRef(null)
 
     const [shouldUndo, setShouldUndo] = useState(false)
     const [updateColor, setUpdateColor] = useState(drawingColors[0])
     const [stroke, setStroke] = useState(2)
+
+    const save = () => {
+        captureRef(shotRef, {
+            format: "jpg",
+            quality: 1,
+            result: "tmpfile",
+        }).then((uri) => {
+            MediaLibrary.saveToLibraryAsync(uri).then((value) => {
+                Sharing.shareAsync(uri)
+            })
+        })
+    }
 
     return (
         <View style={{ padding: 0, alignItems: "center", height: "100%", gap: 10, paddingTop: 20 }}>
@@ -49,24 +65,25 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     <></>
                 </Button>
                 <Button
-                    onPress={() => navigation.navigate(routes.gallery.name)}
+                    onPress={() => save()}
                     style={{ flex: 0.5, paddingHorizontal: 0 }}
                     buttonColor={colors.primary}
                     textColor="white"
                     labelStyle={{ fontSize: 14, padding: 0 }}
-                    disabled
                 >
                     Compartilhar
                 </Button>
             </View>
-            <CanvasContainer
-                navigation={navigation}
-                image={baseImage}
-                shouldUndo={shouldUndo}
-                setShouldUndo={setShouldUndo}
-                updateColor={updateColor}
-                stroke={stroke}
-            />
+            <ViewShot ref={shotRef} style={{ backgroundColor: "white" }}>
+                <CanvasContainer
+                    navigation={navigation}
+                    image={baseImage}
+                    shouldUndo={shouldUndo}
+                    setShouldUndo={setShouldUndo}
+                    updateColor={updateColor}
+                    stroke={stroke}
+                />
+            </ViewShot>
             <View
                 style={{
                     backgroundColor: "#1B1D50",

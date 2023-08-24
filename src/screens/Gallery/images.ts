@@ -13,6 +13,7 @@ const images = {
         [11]: require("../../../assets/gallery/11.png"),
         [12]: require("../../../assets/gallery/12.png"),
         [13]: require("../../../assets/gallery/13.png"),
+        [14]: require("../../../assets/gallery/14.png"),
         [15]: require("../../../assets/gallery/15.png"),
     },
 

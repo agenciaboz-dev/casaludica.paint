@@ -4,20 +4,23 @@ import { PaperProvider } from "react-native-paper"
 import { Routes } from "./src/Router"
 import { theme } from "./src/style/theme"
 import { useFonts } from 'expo-font';
+import * as MediaLibrary from "expo-media-library"
 
 export default function App() {
+    const [status, requestPermission] = MediaLibrary.usePermissions()
 
     let [loaded] = useFonts({
-        'KGSecondChancesSolid': require('./assets/fonts/KGSecondChancesSolid.ttf'),
-        'KGSecondChancesSketch': require('./assets/fonts/KGSecondChancesSketch.ttf'),
-    });
+        KGSecondChancesSolid: require("./assets/fonts/KGSecondChancesSolid.ttf"),
+        KGSecondChancesSketch: require("./assets/fonts/KGSecondChancesSketch.ttf"),
+    })
 
     if (!loaded) {
-        return <>
-
-        </>
+        return <></>
     }
 
+    if (status === null) {
+        requestPermission()
+    }
 
     return (
         <PaperProvider theme={theme}>
