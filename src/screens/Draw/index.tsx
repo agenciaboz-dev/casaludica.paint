@@ -26,7 +26,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
 
     const [shouldUndo, setShouldUndo] = useState(false)
     const [updateColor, setUpdateColor] = useState(drawingColors[0])
-    const [stroke, setStroke] = useState(2)
+    const [stroke, setStroke] = useState(50)
 
     const save = () => {
         captureRef(shotRef, {
