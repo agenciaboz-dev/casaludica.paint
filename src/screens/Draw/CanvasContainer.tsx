@@ -63,16 +63,6 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
     return (
         <View style={{ position: "relative" }}>
             <Svg height={imageHeight} width={imageWidth} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
-                <Path
-                    d={currentPath.join("")}
-                    stroke={updateColor}
-                    fill={"transparent"}
-                    strokeWidth={stroke}
-                    strokeLinejoin={"round"}
-                    strokeLinecap={"round"}
-                    strokeOpacity={1}
-                />
-
                 {paths.length > 0 &&
                     paths.map((item, index) => (
                         <Path
@@ -86,6 +76,15 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
                             strokeOpacity={1}
                         />
                     ))}
+                <Path
+                    d={currentPath.join("")}
+                    stroke={updateColor}
+                    fill={"transparent"}
+                    strokeWidth={stroke}
+                    strokeLinejoin={"round"}
+                    strokeLinecap={"round"}
+                    strokeOpacity={1}
+                />
             </Svg>
             <View style={{ position: "absolute", height: imageHeight, width: imageWidth, top: 0, left: 0 }} pointerEvents="none">
                 <Image source={image} style={{ height: imageHeight, width: imageWidth, resizeMode: "contain" }} />

@@ -1,13 +1,14 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native"
 import React, { useState } from "react"
 import { Dimensions, Image, View } from "react-native"
-import { Button } from "../../components/Button"
+import { Button as PaperButton } from "../../components/Button"
 import { routes } from "../../routes"
-import { Text } from "react-native-paper"
+import { Button, Text } from "react-native-paper"
 import { CanvasContainer } from "./CanvasContainer"
 import { drawingColors } from "./drawingColors"
 import { Circle, Svg } from "react-native-svg"
 import { Slider } from "@miblanchard/react-native-slider"
+import { colors } from "../../style/colors"
 
 interface DrawProps {
     navigation: NavigationProp<any, any>
@@ -24,26 +25,40 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
     const [stroke, setStroke] = useState(2)
 
     return (
-        <View style={{ padding: 20, alignItems: "center", height: 100 * vh, gap: 10 }}>
-            <View style={{ flexDirection: "row", alignSelf: "flex-start", height: 5 * vh, width: 95 * vw, gap: 5 }}>
-                <Button onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.2 }} mode="contained">
+        <View style={{ padding: 0, alignItems: "center", height: "100%", gap: 10, paddingTop: 20 }}>
+            <View
+                style={{
+                    flexDirection: "row",
+                    alignSelf: "center",
+                    justifyContent: "space-between",
+                    height: 5 * vh,
+                    width: 95 * vw,
+                    gap: 6,
+                }}
+            >
+                <PaperButton
+                    onPress={() => navigation.navigate(routes.gallery.name)}
+                    style={{ flex: 0.5, paddingHorizontal: 0 }}
+                    textStyle={{ fontSize: 21, padding: 0 }}
+                    mode="contained"
+                >
                     Voltar
-                </Button>
-                <Button
+                </PaperButton>
+                <PaperButton
                     icon={"undo"}
                     textColor="white"
                     onPress={() => setShouldUndo(true)}
-                    style={{ flex: 0.1 }}
+                    style={{}}
                     mode="contained"
-                ></Button>
-                <Button
+                ></PaperButton>
+                <PaperButton
                     onPress={() => navigation.navigate(routes.gallery.name)}
-                    style={{ flex: 0.6 }}
+                    style={{ flex: 0.5, paddingHorizontal: 0 }}
                     mode="contained"
                     disabled
                 >
                     Compartilhar
-                </Button>
+                </PaperButton>
             </View>
             <CanvasContainer
                 navigation={navigation}
@@ -59,29 +74,30 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     width: 100 * vw,
                     flex: 1,
                     padding: 16,
+                    paddingBottom: 16,
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,
-                    gap: 20,
+                    gap: 12,
                 }}
             >
                 <View style={{ flexDirection: "row", flex: 1, alignItems: "center", gap: 10 }}>
-                    <Text style={{ color: "white" }}>{stroke.toFixed(0)}</Text>
+                    <Text style={{ color: "white", flex: 0.15, textAlign: "center" }}>{stroke.toFixed(0)}</Text>
+
                     <Slider
                         value={stroke}
                         onValueChange={(value) => setStroke(value[0])}
                         maximumValue={100}
                         minimumValue={1}
                         containerStyle={{ backgroundColor: "transparent", flex: 1 }}
-                        thumbStyle={{ backgroundColor: "#FF7C0A" }}
+                        thumbStyle={{ backgroundColor: colors.primary }}
                         trackStyle={{ backgroundColor: "#6022FC" }}
                         minimumTrackTintColor="white"
                     />
                     <Button
-                        onPress={() => {
-                            navigation.navigate(routes.gallery.name)
-                        }}
-                        style={{ flex: 0.3 }}
-                        mode="contained"
+                        buttonColor={colors.primary}
+                        labelStyle={{ fontSize: 10, color: "white" }}
+                        textColor={"white"}
+                        style={{ width: 80, height: 35 }}
                     >
                         Borracha
                     </Button>
@@ -89,7 +105,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 <View
                     style={{
                         flexDirection: "row",
-                        backgroundColor: "#3A3D80",
+                        backgroundColor: colors.secondary,
                         flex: 4,
                         flexWrap: "wrap",
                         gap: 5,
@@ -104,12 +120,16 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                                 fill={color}
                                 cx={15}
                                 cy={15}
-                                r={14}
+                                r={3.5 * vw}
                                 stroke={"black"}
                                 strokeWidth={updateColor == color ? 2 : 0}
                             />
                         </Svg>
                     ))}
+
+                    <Button icon="plus-circle-outline" textColor={"white"} style={{}}>
+                        <></>
+                    </Button>
                 </View>
             </View>
         </View>

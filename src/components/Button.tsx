@@ -11,7 +11,7 @@ interface CustomButtomProps extends ButtonProps {
 
 export const Button: React.FC<CustomButtomProps> = (props) => {
     return (
-        <PaperButton {...props} style={[{ borderRadius: 50, paddingLeft: 10, paddingRight: 10 }, props.style]}>
+        <PaperButton {...props} style={[{ borderRadius: 50 }, props.style]}>
             <Text style={[{ color: "white", fontWeight: "800" }, props.textStyle]} variant={props.textVariant}>
                 {props.children}
             </Text>
