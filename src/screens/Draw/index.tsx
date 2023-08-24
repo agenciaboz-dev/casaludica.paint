@@ -31,34 +31,31 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     flexDirection: "row",
                     alignSelf: "center",
                     justifyContent: "space-between",
-                    height: 5 * vh,
+                    height: 4.5 * vh,
                     width: 95 * vw,
                     gap: 6,
                 }}
             >
-                <PaperButton
+                <Button
                     onPress={() => navigation.navigate(routes.gallery.name)}
-                    style={{ flex: 0.5, paddingHorizontal: 0 }}
-                    textStyle={{ fontSize: 21, padding: 0 }}
+                    style={{ flex: 0.5 }}
+                    labelStyle={{ fontSize: 18, padding: 0 }}
                     mode="contained"
                 >
                     Voltar
-                </PaperButton>
-                <PaperButton
-                    icon={"undo"}
-                    textColor="white"
-                    onPress={() => setShouldUndo(true)}
-                    style={{}}
-                    mode="contained"
-                ></PaperButton>
-                <PaperButton
+                </Button>
+                <Button icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{}} mode="contained">
+                    <></>
+                </Button>
+                <Button
                     onPress={() => navigation.navigate(routes.gallery.name)}
                     style={{ flex: 0.5, paddingHorizontal: 0 }}
                     mode="contained"
+                    labelStyle={{ fontSize: 14, padding: 0 }}
                     disabled
                 >
                     Compartilhar
-                </PaperButton>
+                </Button>
             </View>
             <CanvasContainer
                 navigation={navigation}
@@ -127,7 +124,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                         </Svg>
                     ))}
 
-                    <Button icon="plus-circle-outline" textColor={"white"} style={{}}>
+                    <Button icon="plus-circle-outline" textColor={"white"} style={{}} contentStyle={{}}>
                         <></>
                     </Button>
                 </View>
