@@ -19,40 +19,42 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
     return (
         <View
             style={{
+                backgroundColor: colors.background.blue,
                 height: maxHeight,
-                padding: 20,
                 gap: 0,
                 alignItems: "center",
                 justifyContent: "space-between",
-                backgroundColor: colors.background.blue,
-            }}
-        >
+            }}>
             <ImageBackground source={images.background.planes} style={{ flex: 1, paddingTop: 20 }}>
-                <Text
-                    variant="displayMedium"
+                <View
                     style={{
-                        textAlign: "center",
-                        color: "white",
-                        textShadowColor: "black",
-                        textShadowOffset: { width: 1, height: 1 }, // Deslocamento horizontal e vertical
-                        textShadowRadius: 2,
-                    }}
-                >
-                    Escolha um desenho
-                </Text>
-                <FlatList
-                    data={imageData}
-                    horizontal
-                    // columnWrapperStyle={{ gap: 20 }}
-                    contentContainerStyle={{ gap: 20, paddingTop: 25 }}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }: ImageItem) => <ImageContainer navigation={navigation} image={item} />}
+                        padding: 20,
+                    }}>
+                    <Text
+                        variant="displayMedium"
+                        style={{
+                            textAlign: "center",
+                            color: "white",
+                            textShadowColor: "black",
+                            textShadowOffset: { width: 1, height: 1 }, // Deslocamento horizontal e vertical
+                            textShadowRadius: 15,
+                        }}
+                    >
+                        Escolha um desenho
+                    </Text>
+                    <FlatList
+                        data={imageData}
+                        horizontal
+                        // columnWrapperStyle={{ gap: 20 }}
+                        contentContainerStyle={{ gap: 20, paddingTop: 25 }}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }: ImageItem) => <ImageContainer navigation={navigation} image={item} />}
                     // numColumns={2}
-                />
-
-                <Button textVariant="displayMedium" mode="contained" onPress={() => navigation.navigate(routes.home.name)}>
-                    Voltar
-                </Button>
+                    />
+                    <Button textVariant="displayMedium" mode="contained" onPress={() => navigation.navigate(routes.home.name)}>
+                        Voltar
+                    </Button>
+                </View>
             </ImageBackground>
         </View>
     )
