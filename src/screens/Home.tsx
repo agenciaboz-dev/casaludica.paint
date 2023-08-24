@@ -11,37 +11,28 @@ interface HomeProps {
 
 export const Home: React.FC<HomeProps> = ({ navigation }) => {
     const maxHeight = Dimensions.get("window").height
+    const maxWidth = Dimensions.get("window").height
 
     return (
-        <ImageBackground source={images.background.dots}>
-            <View style={{ height: maxHeight }}>
-                <View style={{ padding: 20, paddingTop: 70 }}>
-                    <View style={{ alignItems: "center", gap: 55 }}>
-                        <Image source={images.logo} style={{ width: 240, height: 160 }} />
-                        <View style={{ padding: 2 }}>
-                            <Image source={images.theme} style={{ width: 330, height: 200 }} />
-                        </View>
-                    </View>
+        <ImageBackground source={images.background.dots} style={{}}>
+            <View style={{ height: "100%" }}>
+                <View style={{ padding: 20, paddingTop: "5%", alignItems: "center", gap: 55 }}>
+                    <Image source={images.logo} style={{ width: 240, height: 160, resizeMode: "contain" }} />
+                    <Image source={images.theme} style={{ width: 330, height: 200, resizeMode: "contain" }} />
                 </View>
 
                 <ImageBackground
                     source={images.background.clouds}
-                    style={{ height: 500, width: 420, position: "absolute", top: 440 }}
+                    style={{ height: 500, maxWidth: maxWidth, alignItems: "center", gap: 15, borderColor: "red", borderWidth: 1 }}
                 >
-                    <View style={{ gap: 15, alignItems: "center", position: "relative", top: 203 }}>
-                        <Button
-                            mode="contained"
-                            onPress={() => navigation.navigate(routes.gallery.name)}
-                            textVariant="displayMedium"
-                        >
-                            Catalogo
+                    <Button mode="contained" onPress={() => navigation.navigate(routes.gallery.name)} textVariant="displayMedium">
+                        Catalogo
+                    </Button>
+                    {Platform.OS != "ios" && (
+                        <Button mode="contained" onPress={() => BackHandler.exitApp()} textVariant="headlineSmall">
+                            Sair
                         </Button>
-                        {Platform.OS != "ios" && (
-                            <Button mode="contained" onPress={() => BackHandler.exitApp()} textVariant="headlineSmall">
-                                Sair
-                            </Button>
-                        )}
-                    </View>
+                    )}
                 </ImageBackground>
             </View>
         </ImageBackground>
