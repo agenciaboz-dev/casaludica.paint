@@ -114,6 +114,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                         labelStyle={{ fontSize: 10, color: "white" }}
                         textColor={"white"}
                         style={{ width: 80, height: 35 }}
+                        onPress={() => setUpdateColor("white")}
                     >
                         Borracha
                     </Button>
