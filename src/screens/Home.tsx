@@ -18,7 +18,9 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                 <View style={{ padding: 20, paddingTop: 70 }}>
                     <View style={{ alignItems: "center", gap: 55 }}>
                         <Image source={images.logo} style={{ width: 240, height: 160 }} />
-                        <Image source={images.theme} style={{ width: 390, height: 250 }} />
+                        <View style={{ padding: 2 }}>
+                            <Image source={images.theme} style={{ width: 330, height: 200 }} />
+                        </View>
                     </View>
                 </View>
 

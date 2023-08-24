@@ -29,8 +29,19 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 <Button onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.2 }} mode="contained">
                     Voltar
                 </Button>
-                <Button icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{ flex: 0.1 }} mode="contained"></Button>
-                <Button onPress={() => navigation.navigate(routes.gallery.name)} style={{ flex: 0.6 }} mode="contained" disabled>
+                <Button
+                    icon={"undo"}
+                    textColor="white"
+                    onPress={() => setShouldUndo(true)}
+                    style={{ flex: 0.1 }}
+                    mode="contained"
+                ></Button>
+                <Button
+                    onPress={() => navigation.navigate(routes.gallery.name)}
+                    style={{ flex: 0.6 }}
+                    mode="contained"
+                    disabled
+                >
                     Compartilhar
                 </Button>
             </View>
@@ -42,33 +53,61 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 updateColor={updateColor}
                 stroke={stroke}
             />
-            <View style={{ backgroundColor: "blue", width: 100 * vw, flex: 1, padding: 10 }}>
+            <View
+                style={{
+                    backgroundColor: "#1B1D50",
+                    width: 100 * vw,
+                    flex: 1,
+                    padding: 16,
+                    borderTopLeftRadius: 20,
+                    borderTopRightRadius: 20,
+                    gap: 20,
+                }}
+            >
                 <View style={{ flexDirection: "row", flex: 1, alignItems: "center", gap: 10 }}>
-                    <Text>{stroke.toFixed(0)}</Text>
+                    <Text style={{ color: "white" }}>{stroke.toFixed(0)}</Text>
                     <Slider
                         value={stroke}
                         onValueChange={(value) => setStroke(value[0])}
                         maximumValue={100}
                         minimumValue={1}
-                        containerStyle={{ backgroundColor: "orange", flex: 1 }}
-                        thumbStyle={{ backgroundColor: "purple" }}
-                        trackStyle={{ backgroundColor: "red" }}
+                        containerStyle={{ backgroundColor: "transparent", flex: 1 }}
+                        thumbStyle={{ backgroundColor: "#FF7C0A" }}
+                        trackStyle={{ backgroundColor: "#6022FC" }}
+                        minimumTrackTintColor="white"
                     />
+                    <Button
+                        onPress={() => {
+                            navigation.navigate(routes.gallery.name)
+                        }}
+                        style={{ flex: 0.3 }}
+                        mode="contained"
+                    >
+                        Borracha
+                    </Button>
                 </View>
                 <View
                     style={{
                         flexDirection: "row",
-                        backgroundColor: "yellow",
+                        backgroundColor: "#3A3D80",
                         flex: 4,
                         flexWrap: "wrap",
                         gap: 5,
                         justifyContent: "center",
                         padding: 5,
+                        borderRadius: 20,
                     }}
                 >
                     {drawingColors.map((color) => (
                         <Svg key={color} width={30} height={30} onPress={() => setUpdateColor(color)}>
-                            <Circle fill={color} cx={15} cy={15} r={14} stroke={"black"} strokeWidth={updateColor == color ? 2 : 0} />
+                            <Circle
+                                fill={color}
+                                cx={15}
+                                cy={15}
+                                r={14}
+                                stroke={"black"}
+                                strokeWidth={updateColor == color ? 2 : 0}
+                            />
                         </Svg>
                     ))}
                 </View>
