@@ -40,17 +40,19 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     onPress={() => navigation.navigate(routes.gallery.name)}
                     style={{ flex: 0.5 }}
                     labelStyle={{ fontSize: 18, padding: 0 }}
-                    mode="contained"
+                    buttonColor={colors.primary}
+                    textColor="white"
                 >
                     Voltar
                 </Button>
-                <Button icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{}} mode="contained">
+                <Button icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{}} buttonColor={colors.primary}>
                     <></>
                 </Button>
                 <Button
                     onPress={() => navigation.navigate(routes.gallery.name)}
                     style={{ flex: 0.5, paddingHorizontal: 0 }}
-                    mode="contained"
+                    buttonColor={colors.primary}
+                    textColor="white"
                     labelStyle={{ fontSize: 14, padding: 0 }}
                     disabled
                 >
@@ -113,14 +115,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     {drawingColors.map((color) => (
                         <Svg key={color} width={30} height={30} onPress={() => setUpdateColor(color)}>
-                            <Circle
-                                fill={color}
-                                cx={15}
-                                cy={15}
-                                r={3.5 * vw}
-                                stroke={"black"}
-                                strokeWidth={updateColor == color ? 2 : 0}
-                            />
+                            <Circle fill={color} cx={15} cy={15} r={3.5 * vw} stroke={"black"} strokeWidth={updateColor == color ? 2 : 0} />
                         </Svg>
                     ))}
 
