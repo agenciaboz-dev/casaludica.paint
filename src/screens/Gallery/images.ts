@@ -14,6 +14,11 @@ const images = {
         [12]: require("../../../assets/gallery/12.png"),
         [13]: require("../../../assets/gallery/13.png"),
         [15]: require("../../../assets/gallery/15.png"),
+        [20]: require("../../../assets/gallery/20.png"),
+        [21]: require("../../../assets/gallery/21.png"),
+        [22]: require("../../../assets/gallery/22.png"),
+        [23]: require("../../../assets/gallery/23.png"),
+        [24]: require("../../../assets/gallery/24.png"),
     },
 
     logo: require("../../../assets/logo/logo.png"),
