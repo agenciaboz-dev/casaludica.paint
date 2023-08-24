@@ -3,11 +3,12 @@ import React, { useState } from "react"
 import { Dimensions, Image, View } from "react-native"
 import { Button as PaperButton } from "../../components/Button"
 import { routes } from "../../routes"
-import { Button, IconButton, Text } from "react-native-paper"
+import { Button, Text } from "react-native-paper"
 import { CanvasContainer } from "./CanvasContainer"
 import { drawingColors } from "./drawingColors"
 import { Circle, Svg } from "react-native-svg"
 import { Slider } from "@miblanchard/react-native-slider"
+import { colors } from "../../style/colors"
 
 interface DrawProps {
     navigation: NavigationProp<any, any>
@@ -43,7 +44,13 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     Voltar
                 </PaperButton>
-                <PaperButton icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{}} mode="contained"></PaperButton>
+                <PaperButton
+                    icon={"undo"}
+                    textColor="white"
+                    onPress={() => setShouldUndo(true)}
+                    style={{}}
+                    mode="contained"
+                ></PaperButton>
                 <PaperButton
                     onPress={() => navigation.navigate(routes.gallery.name)}
                     style={{ flex: 0.5, paddingHorizontal: 0 }}
@@ -70,7 +77,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     paddingBottom: 16,
                     borderTopLeftRadius: 20,
                     borderTopRightRadius: 20,
-                    gap: 10,
+                    gap: 12,
                 }}
             >
                 <View style={{ flexDirection: "row", flex: 1, alignItems: "center", gap: 10 }}>
@@ -82,18 +89,23 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                         maximumValue={100}
                         minimumValue={1}
                         containerStyle={{ backgroundColor: "transparent", flex: 1 }}
-                        thumbStyle={{ backgroundColor: "#FF7C0A" }}
+                        thumbStyle={{ backgroundColor: colors.primary }}
                         trackStyle={{ backgroundColor: "#6022FC" }}
                         minimumTrackTintColor="white"
                     />
-                    <PaperButton onPress={() => {}} style={{ width: 80 }} textStyle={{ padding: 0, fontSize: 3 * vw }} mode="contained">
+                    <Button
+                        buttonColor={colors.primary}
+                        labelStyle={{ fontSize: 10, color: "white" }}
+                        textColor={"white"}
+                        style={{ width: 80, height: 35 }}
+                    >
                         Borracha
-                    </PaperButton>
+                    </Button>
                 </View>
                 <View
                     style={{
                         flexDirection: "row",
-                        backgroundColor: "#3A3D80",
+                        backgroundColor: colors.secondary,
                         flex: 4,
                         flexWrap: "wrap",
                         gap: 5,
@@ -104,7 +116,14 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     {drawingColors.map((color) => (
                         <Svg key={color} width={30} height={30} onPress={() => setUpdateColor(color)}>
-                            <Circle fill={color} cx={15} cy={15} r={3.5 * vw} stroke={"black"} strokeWidth={updateColor == color ? 2 : 0} />
+                            <Circle
+                                fill={color}
+                                cx={15}
+                                cy={15}
+                                r={3.5 * vw}
+                                stroke={"black"}
+                                strokeWidth={updateColor == color ? 2 : 0}
+                            />
                         </Svg>
                     ))}
 

@@ -15,17 +15,36 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
 
     return (
         <ImageBackground source={images.background.dots} style={{}}>
-            <View style={{ height: "100%" }}>
-                <View style={{ padding: 20, paddingTop: "5%", alignItems: "center", gap: 55 }}>
+            <View style={{ height: "100%", justifyContent: "space-between" }}>
+                <View
+                    style={{
+                        padding: 20,
+                        paddingTop: "5%",
+                        alignItems: "center",
+                        gap: 30,
+                    }}
+                >
                     <Image source={images.logo} style={{ width: 240, height: 160, resizeMode: "contain" }} />
                     <Image source={images.theme} style={{ width: 330, height: 200, resizeMode: "contain" }} />
                 </View>
 
                 <ImageBackground
                     source={images.background.clouds}
-                    style={{ height: 500, maxWidth: maxWidth, alignItems: "center", gap: 15, borderColor: "red", borderWidth: 1 }}
+                    style={{
+                        height: 360,
+                        maxWidth: maxWidth,
+                        alignItems: "center",
+                        gap: 15,
+
+                        paddingTop: "33.8%",
+                    }}
+                    resizeMode="cover"
                 >
-                    <Button mode="contained" onPress={() => navigation.navigate(routes.gallery.name)} textVariant="displayMedium">
+                    <Button
+                        mode="contained"
+                        onPress={() => navigation.navigate(routes.gallery.name)}
+                        textVariant="displayMedium"
+                    >
                         Catalogo
                     </Button>
                     {Platform.OS != "ios" && (
