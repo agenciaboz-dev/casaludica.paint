@@ -24,8 +24,8 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                         gap: 30,
                     }}
                 >
-                    <Image source={images.logo} style={{ width: 240, height: 160, resizeMode: "contain" }} />
-                    <Image source={images.theme} style={{ width: 330, height: 200, resizeMode: "contain" }} />
+                    <Image source={images.logo} style={{ width: 160, height: 160, resizeMode: "contain" }} />
+                    <Image source={images.theme} style={{ width: 280, height: 200, resizeMode: "contain" }} />
                 </View>
 
                 <ImageBackground
@@ -40,11 +40,7 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                     }}
                     resizeMode="cover"
                 >
-                    <Button
-                        mode="contained"
-                        onPress={() => navigation.navigate(routes.gallery.name)}
-                        textVariant="displayMedium"
-                    >
+                    <Button mode="contained" onPress={() => navigation.navigate(routes.gallery.name)} textVariant="displayMedium">
                         Catalogo
                     </Button>
                     {Platform.OS != "ios" && (
