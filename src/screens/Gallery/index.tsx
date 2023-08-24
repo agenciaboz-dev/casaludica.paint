@@ -46,10 +46,10 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                         data={imageData}
                         horizontal
                         // columnWrapperStyle={{ gap: 20 }}
-                        contentContainerStyle={{ gap: 20, paddingTop: 25 }}
+                        contentContainerStyle={{ gap: 20, paddingBottom: 10, alignItems: "center" }}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }: ImageItem) => <ImageContainer navigation={navigation} image={item} />}
-                    // numColumns={2}
+                        // numColumns={2}
                     />
                     <Button textVariant="displayMedium" mode="contained" onPress={() => navigation.navigate(routes.home.name)}>
                         Voltar
