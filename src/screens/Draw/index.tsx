@@ -137,9 +137,9 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                         </Svg>
                     ))}
 
-                    <Button icon="plus-circle-outline" textColor={"white"} style={{}} contentStyle={{}}>
+                    {/* <Button icon="plus-circle-outline" textColor={"white"} style={{}} contentStyle={{}}>
                         <></>
-                    </Button>
+                    </Button> */}
                 </View>
             </View>
         </View>
