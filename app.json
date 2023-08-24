@@ -1,32 +1,39 @@
 {
   "expo": {
-      "name": "Colorindo com a turminha lúdica",
-      "slug": "casaludicapaint",
-      "owner": "agenciaboz-dev",
-      "version": "1.0.0",
-      "orientation": "portrait",
-      "icon": "./assets/icon.png",
-      "userInterfaceStyle": "light",
-      "splash": {
-          "image": "./assets/splash.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+    "name": "Colorindo com a turminha lúdica",
+    "slug": "casaludicapaint",
+    "owner": "agenciaboz-dev",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "br.com.agenciaboz.casaludicapaint"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "monochromeImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
       },
-      "assetBundlePatterns": ["**/*"],
-      "ios": {
-          "supportsTablet": true,
-          "bundleIdentifier": "br.com.agenciaboz.casaludicapaint"
-      },
-      "android": {
-          "adaptiveIcon": {
-              "foregroundImage": "./assets/icon.png",
-              "monochromeImage": "./assets/adaptive-icon.png",
-              "backgroundColor": "#ffffff"
-          },
-          "package": "com.casaludica.guide"
-      },
-      "web": {
-          "favicon": "./assets/favicon.png"
+      "package": "com.casaludica.guide"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "beeacf0f-652d-4747-b9f1-6c867aa3a62c"
       }
+    }
   }
 }
