@@ -41,7 +41,7 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                     resizeMode="cover"
                 >
                     <Button mode="contained" onPress={() => navigation.navigate(routes.gallery.name)} textVariant="displayMedium">
-                        Catalogo
+                        Catálogo
                     </Button>
                     {Platform.OS != "ios" && (
                         <Button mode="contained" onPress={() => BackHandler.exitApp()} textVariant="headlineSmall">
