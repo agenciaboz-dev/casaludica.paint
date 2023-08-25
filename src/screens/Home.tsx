@@ -1,8 +1,8 @@
 import React from "react"
 import { BackHandler, Dimensions, Platform, View, Image, ImageBackground } from "react-native"
-import { Button } from "../components/Button"
 import { NavigationProp } from "@react-navigation/native"
 import images from "./Gallery/images"
+import { Button } from "react-native-paper"
 
 interface HomeProps {
     navigation: NavigationProp<any, any>
@@ -39,11 +39,19 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                     }}
                     resizeMode="cover"
                 >
-                    <Button mode="contained" onPress={() => navigation.navigate("gallery")} textVariant="displayMedium">
+                    <Button mode="contained" onPress={() => navigation.navigate("gallery")} labelStyle={{
+                        textAlignVertical: "bottom",
+                        height: 40,
+                        fontSize: 30
+                    }}>
                         Catálogo
                     </Button>
                     {Platform.OS != "ios" && (
-                        <Button mode="contained" onPress={() => BackHandler.exitApp()} textVariant="headlineSmall">
+                        <Button mode="contained" onPress={() => BackHandler.exitApp()} labelStyle={{
+                            textAlignVertical: "bottom",
+                            height: 40,
+                            fontSize: 30
+                        }}>
                             Sair
                         </Button>
                     )}
