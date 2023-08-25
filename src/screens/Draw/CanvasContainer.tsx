@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { NavigationProp } from "@react-navigation/native"
-import { ColorValue, Dimensions, GestureResponderEvent, Image, View } from "react-native"
-import { Path, Svg } from "react-native-svg"
+import { ColorValue, Dimensions, GestureResponderEvent, Image, Platform, Touchable, View } from "react-native"
+import { Path, Rect, Svg } from "react-native-svg"
 
 interface CanvasContainerProps {
     navigation: NavigationProp<any, any>
@@ -63,6 +63,7 @@ export const CanvasContainer: React.FC<CanvasContainerProps> = ({ navigation, im
     return (
         <View style={{ position: "relative" }}>
             <Svg height={imageHeight} width={imageWidth} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+                {Platform.OS == "ios" && <Rect width={imageWidth} height={imageHeight} fill={"white"} />}
                 {paths.length > 0 &&
                     paths.map((item, index) => (
                         <Path
