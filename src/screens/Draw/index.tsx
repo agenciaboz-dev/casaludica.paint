@@ -1,8 +1,6 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native"
-import React, { useRef, useState } from "react"
+import React, { useCallback, useRef, useState } from "react"
 import { Alert, Dimensions, Image, Share, View } from "react-native"
-import { Button as PaperButton } from "../../components/Button"
-import { routes } from "../../routes"
 import { Button, Text } from "react-native-paper"
 import { CanvasContainer } from "./CanvasContainer"
 import { drawingColors } from "./drawingColors"
@@ -27,18 +25,22 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
     const [shouldUndo, setShouldUndo] = useState(false)
     const [updateColor, setUpdateColor] = useState(drawingColors[0])
     const [stroke, setStroke] = useState(50)
+    const [status, requestPermission] = MediaLibrary.usePermissions()
 
-    const save = () => {
-        captureRef(shotRef, {
+    const save = useCallback(async () => {
+        console.log({ status })
+        if (!status?.granted) {
+            await requestPermission()
+        }
+
+        const uri = await captureRef(shotRef, {
             format: "jpg",
             quality: 1,
             result: "tmpfile",
-        }).then((uri) => {
-            MediaLibrary.saveToLibraryAsync(uri).then((value) => {
-                Sharing.shareAsync(uri)
-            })
         })
-    }
+        await MediaLibrary.saveToLibraryAsync(uri)
+        await Sharing.shareAsync(uri)
+    }, [status])
 
     return (
         <View style={{ padding: 0, alignItems: "center", height: "100%", gap: 10, paddingTop: 20 }}>
@@ -53,7 +55,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 }}
             >
                 <Button
-                    onPress={() => navigation.navigate(routes.gallery.name)}
+                    onPress={() => navigation.navigate("gallery")}
                     style={{ flex: 0.5 }}
                     labelStyle={{ fontSize: 17, padding: 0 }}
                     buttonColor={colors.primary}
@@ -61,13 +63,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     Voltar
                 </Button>
-                <Button
-                    icon={"undo"}
-                    textColor="white"
-                    onPress={() => setShouldUndo(true)}
-                    style={{}}
-                    buttonColor={colors.primary}
-                >
+                <Button icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{}} buttonColor={colors.primary}>
                     <></>
                 </Button>
                 <Button
@@ -139,14 +135,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     {drawingColors.map((color) => (
                         <Svg key={color} width={30} height={30} onPress={() => setUpdateColor(color)}>
-                            <Circle
-                                fill={color}
-                                cx={15}
-                                cy={15}
-                                r={3.5 * vw}
-                                stroke={"black"}
-                                strokeWidth={updateColor == color ? 2 : 0}
-                            />
+                            <Circle fill={color} cx={15} cy={15} r={3.5 * vw} stroke={"black"} strokeWidth={updateColor == color ? 2 : 0} />
                         </Svg>
                     ))}
 
