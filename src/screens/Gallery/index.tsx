@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Dimensions, FlatList, Image, ImageBackground, TouchableOpacity, View } from "react-native"
-import { Avatar, Button, Text } from "react-native-paper"
+import { Avatar, Button, IconButton, Text } from "react-native-paper"
 import images from "./images"
 import { NavigationProp } from "@react-navigation/native"
 import { ImageContainer } from "./ImageContainer"
@@ -48,7 +48,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                 justifyContent: "space-between",
             }}>
                 <View style={{
-                    gap: 40,
+                    gap: 20,
                 }}>
                     <Text
                         variant="displayMedium"
@@ -93,24 +93,20 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                         marginHorizontal: width * 0.15,
                         width: width * 0.7,
                     }}>
-                        <Button
-                            buttonColor={colors.secondary}
-                            textColor="white"
+                        <IconButton
+                            iconColor={colors.secondary}
+                            size={72}
                             onPress={() => handleChangePage(-1)}
                             disabled={currentIndex == 0}
                             icon={'arrow-left-thick'}
-                        >
-                            Anterior
-                        </Button>
-                        <Button
-                            buttonColor={colors.secondary}
-                            textColor="white"
+                            />
+                        <IconButton
+                            iconColor={colors.secondary}
+                            size={72}
                             onPress={() => handleChangePage(1)}
                             disabled={currentIndex == imageData.length - 1}
                             icon={'arrow-right-thick'}
-                        >
-                            Próximo
-                        </Button>
+                        />
                     </View>
                     <Button
                         buttonColor={colors.primary}
