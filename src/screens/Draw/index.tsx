@@ -1,6 +1,6 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native"
 import React, { useCallback, useRef, useState } from "react"
-import { Alert, Dimensions, Image, Share, View } from "react-native"
+import { Alert, Dimensions, Image, Modal, Share, View } from "react-native"
 import { Button, Text } from "react-native-paper"
 import { CanvasContainer } from "./CanvasContainer"
 import { drawingColors } from "./drawingColors"
@@ -10,6 +10,7 @@ import { colors } from "../../style/colors"
 import ViewShot, { captureRef } from "react-native-view-shot"
 import * as MediaLibrary from "expo-media-library"
 import * as Sharing from "expo-sharing"
+import ColorPicker, { Swatches, Preview, OpacitySlider, HueSlider, Panel3, BrightnessSlider } from "reanimated-color-picker"
 
 interface DrawProps {
     navigation: NavigationProp<any, any>
@@ -26,6 +27,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
     const [updateColor, setUpdateColor] = useState(drawingColors[0])
     const [stroke, setStroke] = useState(50)
     const [status, requestPermission] = MediaLibrary.usePermissions()
+    const [showModal, setShowModal] = useState(false)
 
     const save = useCallback(async () => {
         console.log({ status })
@@ -139,11 +141,23 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                         </Svg>
                     ))}
 
-                    {/* <Button icon="plus-circle-outline" textColor={"white"} style={{}} contentStyle={{}}>
+                    <Button icon="plus-circle-outline" textColor={"white"} style={{}} contentStyle={{}} onPress={() => setShowModal(true)}>
                         <></>
-                    </Button> */}
+                    </Button>
                 </View>
             </View>
+            <Modal visible={showModal} animationType="slide" transparent>
+                <ColorPicker style={{ width: "70%" }} value={updateColor} onComplete={(colors) => setUpdateColor(colors.hex)}>
+                    <Panel3 />
+                    <OpacitySlider />
+                    <BrightnessSlider />
+                    <Preview hideInitialColor />
+                </ColorPicker>
+
+                <Button buttonColor={colors.primary} textColor="white" onPress={() => setShowModal(false)}>
+                    ok
+                </Button>
+            </Modal>
         </View>
     )
 }
