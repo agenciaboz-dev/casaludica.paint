@@ -45,7 +45,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     flexDirection: "row",
                     alignSelf: "center",
                     justifyContent: "space-between",
-                    height: 4.5 * vh,
+                    //height: 4 * vh,
                     width: 95 * vw,
                     gap: 6,
                 }}
@@ -53,13 +53,19 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 <Button
                     onPress={() => navigation.navigate("gallery")}
                     style={{ flex: 0.5 }}
-                    labelStyle={{ fontSize: 18, padding: 0 }}
+                    labelStyle={{ fontSize: 17, padding: 0 }}
                     buttonColor={colors.primary}
                     textColor="white"
                 >
                     Voltar
                 </Button>
-                <Button icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{}} buttonColor={colors.primary}>
+                <Button
+                    icon={"undo"}
+                    textColor="white"
+                    onPress={() => setShouldUndo(true)}
+                    style={{}}
+                    buttonColor={colors.primary}
+                >
                     <></>
                 </Button>
                 <Button
@@ -67,7 +73,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     style={{ flex: 0.5, paddingHorizontal: 0 }}
                     buttonColor={colors.primary}
                     textColor="white"
-                    labelStyle={{ fontSize: 14, padding: 0 }}
+                    labelStyle={{ fontSize: 13, padding: 0 }}
                 >
                     Compartilhar
                 </Button>
@@ -131,7 +137,14 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     {drawingColors.map((color) => (
                         <Svg key={color} width={30} height={30} onPress={() => setUpdateColor(color)}>
-                            <Circle fill={color} cx={15} cy={15} r={3.5 * vw} stroke={"black"} strokeWidth={updateColor == color ? 2 : 0} />
+                            <Circle
+                                fill={color}
+                                cx={15}
+                                cy={15}
+                                r={3.5 * vw}
+                                stroke={"black"}
+                                strokeWidth={updateColor == color ? 2 : 0}
+                            />
                         </Svg>
                     ))}
 

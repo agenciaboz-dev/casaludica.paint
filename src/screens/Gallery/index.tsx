@@ -24,7 +24,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                 justifyContent: "space-between",
             }}
         >
-            <ImageBackground source={images.background.planes} style={{ flex: 1, paddingVertical: 20 }}>
+            <ImageBackground source={images.background.planes} style={{ flex: 1, paddingVertical: 20, paddingTop: 35 }}>
                 <Text
                     variant="displayMedium"
                     style={{
@@ -32,7 +32,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                         color: "white",
                         textShadowColor: "black",
                         textShadowOffset: { width: 1, height: 1 }, // Deslocamento horizontal e vertical
-                        textShadowRadius: 15,
+                        textShadowRadius: 10,
                     }}
                 >
                     Escolha um desenho
