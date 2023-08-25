@@ -14,12 +14,13 @@ interface ImageProps {
 export const ImageContainer: React.FC<ImageProps> = ({ navigation, image }) => {
     return (
         <TouchableOpacity style={{
-            width: width * 0.9,
-            height: height * 0.6,
+            width: width * 0.7,
+            height: height * 0.5,
             alignItems: "center",
             justifyContent: "center",
             padding: 30,
-            backgroundColor: "white"
+            backgroundColor: "white",
+            borderRadius: 30,
         }} onPress={() => navigation.navigate(routes.draw.name, { image })}>
             <Image source={image} style={{
                 width: "100%",
