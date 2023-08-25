@@ -19,16 +19,6 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const handlePrev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
-    };
-
-    const handleNext = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex < imageData.length - 1 ? prevIndex + 1 : prevIndex
-        );
-    };
-
     const handleChangePage = (operator: number) => {
         setCurrentIndex((index) => {
             const result = index + operator
@@ -106,13 +96,19 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                         <Button
                             buttonColor={colors.secondary}
                             textColor="white"
-                            onPress={() => handleChangePage(-1)}>
+                            onPress={() => handleChangePage(-1)}
+                            disabled={currentIndex == 0}
+                            icon={'arrow-left-thick'}
+                        >
                             Anterior
                         </Button>
                         <Button
                             buttonColor={colors.secondary}
                             textColor="white"
-                            onPress={() => handleChangePage(1)}>
+                            onPress={() => handleChangePage(1)}
+                            disabled={currentIndex == imageData.length - 1}
+                            icon={'arrow-right-thick'}
+                        >
                             Próximo
                         </Button>
                     </View>
