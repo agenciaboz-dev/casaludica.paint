@@ -42,7 +42,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                 alignItems: "center",
             }}
         >
-            <ImageBackground source={images.background.planes} style={{
+            <ImageBackground source={images.background.planes} resizeMode="repeat" style={{
                 flex: 1,
                 paddingVertical: 40,
                 justifyContent: "space-between",
