@@ -39,19 +39,28 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                     }}
                     resizeMode="cover"
                 >
-                    <Button mode="contained" onPress={() => navigation.navigate("gallery")} labelStyle={{
-                        textAlignVertical: "bottom",
-                        height: 40,
-                        fontSize: 30
-                    }}>
+                    <Button
+                        mode="contained"
+                        onPress={() => navigation.navigate("gallery")}
+                        labelStyle={{
+                            textAlignVertical: "bottom",
+                            height: 40,
+                            fontSize: 30,
+                            paddingTop: 18,
+                        }}
+                    >
                         Catálogo
                     </Button>
                     {Platform.OS != "ios" && (
-                        <Button mode="contained" onPress={() => BackHandler.exitApp()} labelStyle={{
-                            textAlignVertical: "bottom",
-                            height: 40,
-                            fontSize: 30
-                        }}>
+                        <Button
+                            mode="contained"
+                            onPress={() => BackHandler.exitApp()}
+                            labelStyle={{
+                                textAlignVertical: "bottom",
+                                height: 40,
+                                fontSize: 30,
+                            }}
+                        >
                             Sair
                         </Button>
                     )}
