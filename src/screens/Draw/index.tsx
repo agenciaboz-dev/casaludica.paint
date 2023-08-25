@@ -23,6 +23,9 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
     const baseImage = route.params?.image
     const shotRef = useRef(null)
 
+    const maxHeight = Dimensions.get("window").height
+    const maxWidth = Dimensions.get("window").height
+
     const [shouldUndo, setShouldUndo] = useState(false)
     const [updateColor, setUpdateColor] = useState(drawingColors[0])
     const [stroke, setStroke] = useState(50)
@@ -65,7 +68,13 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     Voltar
                 </Button>
-                <Button icon={"undo"} textColor="white" onPress={() => setShouldUndo(true)} style={{}} buttonColor={colors.primary}>
+                <Button
+                    icon={"undo"}
+                    textColor="white"
+                    onPress={() => setShouldUndo(true)}
+                    style={{}}
+                    buttonColor={colors.primary}
+                >
                     <></>
                 </Button>
                 <Button
@@ -137,26 +146,64 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 >
                     {drawingColors.map((color) => (
                         <Svg key={color} width={30} height={30} onPress={() => setUpdateColor(color)}>
-                            <Circle fill={color} cx={15} cy={15} r={3.5 * vw} stroke={"black"} strokeWidth={updateColor == color ? 2 : 0} />
+                            <Circle
+                                fill={color}
+                                cx={15}
+                                cy={15}
+                                r={3.5 * vw}
+                                stroke={"black"}
+                                strokeWidth={updateColor == color ? 2 : 0}
+                            />
                         </Svg>
                     ))}
 
-                    <Button icon="plus-circle-outline" textColor={"white"} style={{}} contentStyle={{}} onPress={() => setShowModal(true)}>
+                    <Button
+                        icon="plus-circle-outline"
+                        textColor={"white"}
+                        style={{}}
+                        contentStyle={{}}
+                        onPress={() => setShowModal(true)}
+                    >
                         <></>
                     </Button>
                 </View>
             </View>
             <Modal visible={showModal} animationType="slide" transparent>
-                <ColorPicker style={{ width: "70%" }} value={updateColor} onComplete={(colors) => setUpdateColor(colors.hex)}>
-                    <Panel3 />
-                    <OpacitySlider />
-                    <BrightnessSlider />
-                    <Preview hideInitialColor />
-                </ColorPicker>
-
-                <Button buttonColor={colors.primary} textColor="white" onPress={() => setShowModal(false)}>
-                    ok
-                </Button>
+                <View style={{ width: "100%", height: "100%", justifyContent: "center", alignItems: "center" }}>
+                    <View
+                        style={{
+                            width: "68%",
+                            backgroundColor: "#1B1D50",
+                            padding: 25,
+                            borderRadius: 20,
+                            gap: 12,
+                        }}
+                    >
+                        <ColorPicker
+                            style={{ width: "100%", gap: 15 }}
+                            value={updateColor}
+                            onComplete={(colors) => setUpdateColor(colors.hex)}
+                        >
+                            <View style={{ backgroundColor: colors.secondary, gap: 13, padding: 22, borderRadius: 20 }}>
+                                <Panel3 />
+                                <OpacitySlider />
+                                <BrightnessSlider />
+                            </View>
+                            <View style={{ flexDirection: "row", width: "100%", gap: 6 }}>
+                                <View style={{ backgroundColor: updateColor, width: 25, borderRadius: 50 }} />
+                                <Preview hideInitialColor style={{ width: "85%" }} />
+                            </View>
+                        </ColorPicker>
+                        <Button
+                            buttonColor={colors.primary}
+                            textColor="white"
+                            style={{ width: "100%" }}
+                            onPress={() => setShowModal(false)}
+                        >
+                            ok
+                        </Button>
+                    </View>
+                </View>
             </Modal>
         </View>
     )
