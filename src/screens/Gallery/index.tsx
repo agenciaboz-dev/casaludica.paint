@@ -41,7 +41,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                     data={imageData}
                     horizontal
                     // columnWrapperStyle={{ gap: 20 }}
-                    contentContainerStyle={{ gap: 20, alignItems: "center", paddingHorizontal: 20 }}
+                    contentContainerStyle={{ gap: 70, alignItems: "center", paddingHorizontal: 60 }}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }: ImageItem) => <ImageContainer navigation={navigation} image={item} />}
                     // numColumns={2}
