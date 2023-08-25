@@ -2,7 +2,6 @@ import React from "react"
 import { BackHandler, Dimensions, Platform, View, Image, ImageBackground } from "react-native"
 import { Button } from "../components/Button"
 import { NavigationProp } from "@react-navigation/native"
-import { routes } from "../routes"
 import images from "./Gallery/images"
 
 interface HomeProps {
@@ -40,7 +39,7 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
                     }}
                     resizeMode="cover"
                 >
-                    <Button mode="contained" onPress={() => navigation.navigate(routes.gallery.name)} textVariant="displayMedium">
+                    <Button mode="contained" onPress={() => navigation.navigate("gallery")} textVariant="displayMedium">
                         Catálogo
                     </Button>
                     {Platform.OS != "ios" && (

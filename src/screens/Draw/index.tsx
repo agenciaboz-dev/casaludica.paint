@@ -1,8 +1,6 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native"
 import React, { useRef, useState } from "react"
 import { Alert, Dimensions, Image, Share, View } from "react-native"
-import { Button as PaperButton } from "../../components/Button"
-import { routes } from "../../routes"
 import { Button, Text } from "react-native-paper"
 import { CanvasContainer } from "./CanvasContainer"
 import { drawingColors } from "./drawingColors"
@@ -53,7 +51,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                 }}
             >
                 <Button
-                    onPress={() => navigation.navigate(routes.gallery.name)}
+                    onPress={() => navigation.navigate("gallery")}
                     style={{ flex: 0.5 }}
                     labelStyle={{ fontSize: 18, padding: 0 }}
                     buttonColor={colors.primary}

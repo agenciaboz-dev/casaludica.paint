@@ -3,7 +3,6 @@ import { Dimensions, FlatList, Image, ImageBackground, TouchableOpacity, View } 
 import { Avatar, Button, Text } from "react-native-paper"
 import images from "./images"
 import { NavigationProp } from "@react-navigation/native"
-import { routes } from "../../routes"
 import { ImageContainer } from "./ImageContainer"
 import { colors } from "../../style/colors"
 
@@ -51,7 +50,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                     buttonColor={colors.primary}
                     textColor="white"
                     style={{ width: 300, alignSelf: "center" }}
-                    onPress={() => navigation.navigate(routes.home.name)}
+                    onPress={() => navigation.navigate('home')}
                 >
                     Voltar
                 </Button>
