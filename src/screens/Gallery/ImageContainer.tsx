@@ -1,7 +1,6 @@
 import { NavigationProp } from "@react-navigation/native"
 import React from "react"
 import { TouchableOpacity, Image, Dimensions } from "react-native"
-import { routes } from "../../routes"
 
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height

@@ -1,8 +1,6 @@
 import { NavigationProp, RouteProp } from "@react-navigation/native"
-import React, { useRef, useState } from "react"
+import React, { useCallback, useRef, useState } from "react"
 import { Alert, Dimensions, Image, Share, View } from "react-native"
-import { Button as PaperButton } from "../../components/Button"
-import { routes } from "../../routes"
 import { Button, Text } from "react-native-paper"
 import { CanvasContainer } from "./CanvasContainer"
 import { drawingColors } from "./drawingColors"
@@ -27,18 +25,22 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
     const [shouldUndo, setShouldUndo] = useState(false)
     const [updateColor, setUpdateColor] = useState(drawingColors[0])
     const [stroke, setStroke] = useState(50)
+    const [status, requestPermission] = MediaLibrary.usePermissions()
 
-    const save = () => {
-        captureRef(shotRef, {
+    const save = useCallback(async () => {
+        console.log({ status })
+        if (!status?.granted) {
+            await requestPermission()
+        }
+
+        const uri = await captureRef(shotRef, {
             format: "jpg",
             quality: 1,
             result: "tmpfile",
-        }).then((uri) => {
-            MediaLibrary.saveToLibraryAsync(uri).then((value) => {
-                Sharing.shareAsync(uri)
-            })
         })
-    }
+        await MediaLibrary.saveToLibraryAsync(uri)
+        await Sharing.shareAsync(uri)
+    }, [status])
 
     return (
         <View style={{ padding: 0, alignItems: "center", height: "100%", gap: 10, paddingTop: 20 }}>
@@ -47,15 +49,15 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     flexDirection: "row",
                     alignSelf: "center",
                     justifyContent: "space-between",
-                    height: 4.5 * vh,
+                    //height: 4 * vh,
                     width: 95 * vw,
                     gap: 6,
                 }}
             >
                 <Button
-                    onPress={() => navigation.navigate(routes.gallery.name)}
+                    onPress={() => navigation.navigate("gallery")}
                     style={{ flex: 0.5 }}
-                    labelStyle={{ fontSize: 18, padding: 0 }}
+                    labelStyle={{ fontSize: 17, padding: 0 }}
                     buttonColor={colors.primary}
                     textColor="white"
                 >
@@ -69,7 +71,7 @@ export const Draw: React.FC<DrawProps> = ({ route, navigation }) => {
                     style={{ flex: 0.5, paddingHorizontal: 0 }}
                     buttonColor={colors.primary}
                     textColor="white"
-                    labelStyle={{ fontSize: 14, padding: 0 }}
+                    labelStyle={{ fontSize: 13, padding: 0 }}
                 >
                     Compartilhar
                 </Button>

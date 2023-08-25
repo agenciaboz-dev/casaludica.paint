@@ -3,7 +3,6 @@ import { Dimensions, FlatList, Image, ImageBackground, TouchableOpacity, View } 
 import { Avatar, Button, Text } from "react-native-paper"
 import images from "./images"
 import { NavigationProp } from "@react-navigation/native"
-import { routes } from "../../routes"
 import { ImageContainer } from "./ImageContainer"
 import { colors } from "../../style/colors"
 
@@ -25,7 +24,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                 justifyContent: "space-between",
             }}
         >
-            <ImageBackground source={images.background.planes} style={{ flex: 1, paddingVertical: 40 }}>
+            <ImageBackground source={images.background.planes} style={{ flex: 1, paddingVertical: 20, paddingTop: 35 }}>
                 <Text
                     variant="displayMedium"
                     style={{
@@ -33,7 +32,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                         color: "white",
                         textShadowColor: "black",
                         textShadowOffset: { width: 1, height: 1 }, // Deslocamento horizontal e vertical
-                        textShadowRadius: 15,
+                        textShadowRadius: 10,
                     }}
                 >
                     Escolha um desenho
@@ -51,7 +50,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                     buttonColor={colors.primary}
                     textColor="white"
                     style={{ width: 300, alignSelf: "center" }}
-                    onPress={() => navigation.navigate(routes.home.name)}
+                    onPress={() => navigation.navigate('home')}
                 >
                     Voltar
                 </Button>
