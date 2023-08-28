@@ -14,11 +14,11 @@ export const ImageContainer: React.FC<ImageProps> = ({ navigation, image }) => {
     return (
         <TouchableOpacity
             style={{
-                width: width * 0.7,
-                height: height * 0.5,
+                width: width * 0.6,
+                height: height * 0.4,
                 alignItems: "center",
                 justifyContent: "center",
-                padding: 30,
+                padding: 20,
                 backgroundColor: "white",
                 borderRadius: 30
             }}

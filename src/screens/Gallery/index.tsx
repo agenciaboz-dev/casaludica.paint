@@ -11,6 +11,7 @@ interface GalleryProps {
 }
 
 const { width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
     const maxHeight = Dimensions.get("window").height
@@ -24,7 +25,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
             const result = index + operator
             if (result < 0 || result > imageData.length - 1) return index
 
-            galleryRef.current?.scrollToIndex({ index: result, animated: true, viewOffset: width * 0.15 })
+            galleryRef.current?.scrollToIndex({ index: result, animated: true, viewOffset: width * 0.2 })
             return result
         })
     }
@@ -49,6 +50,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
             }}>
                 <View style={{
                     gap: 20,
+                    position: "relative"
                 }}>
                     <Text
                         variant="displayMedium"
@@ -71,9 +73,9 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                         // columnWrapperStyle={{ gap: 20 }}
                         // numColumns={2}
                         contentContainerStyle={{
-                            gap: width * 0.3,
+                            gap: width * 0.4,
                             alignItems: "center",
-                            paddingHorizontal: 60,
+                            paddingHorizontal: width * 0.2,
                             width: width * imageData.length
                         }}
                         keyExtractor={(item, index) => index.toString()}
@@ -87,11 +89,12 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                         }}
                     />
                     <View style={{
+                        position: "absolute",
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        marginHorizontal: width * 0.15,
-                        width: width * 0.7,
+                        width: width,
+                        top: 350,
                     }}>
                         <IconButton
                             iconColor={colors.secondary}
@@ -111,7 +114,7 @@ export const Gallery: React.FC<GalleryProps> = ({ navigation }) => {
                     <Button
                         buttonColor={colors.primary}
                         textColor="white"
-                        style={{ width: width * 0.7, alignSelf: "center" }}
+                        style={{ width: width * 0.6, alignSelf: "center" }}
                         onPress={() => navigation.navigate('home')}
                     >
                         Voltar
